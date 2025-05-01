@@ -99,7 +99,8 @@
 			!string.IsNullOrEmpty(password))
 		{
 			userHandler.Register(firstname, lastname, taxcode, email, password);
+			Console.WriteLine($"User {firstname} {lastname} registered successfully");
 		}
-		Console.WriteLine($"User {firstname} {lastname} registered successfully");
+		Console.WriteLine("Cannot register user: there are empty fields");
 	}
 }
