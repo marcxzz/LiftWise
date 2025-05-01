@@ -1,7 +1,32 @@
 @import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
+@import url('https://fonts.googleapis.com/css2?family=REM:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+    --body-bg: #F8E9E6;
+    --body-bg-dark: #F3D7D0;
+    --primary-color: #D86249;
+    --white: #fff;
+    --black: #0000;
+}
+
+input, .input-group-text {
+    background-color: var(--body-bg-dark) !important;
+    border: none !important;
+}
+
+button.btn-primary {
+    background-color: var(--primary-color);
+    border: none;
+}
+    button.btn-primary:active, button.btn-primary:focus {
+        
+    }
+
+/* END CUSTOM STYLES*/
 
 html, body {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: 'REM', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background-color: var(--body-bg);
 }
 
 h1:focus {
