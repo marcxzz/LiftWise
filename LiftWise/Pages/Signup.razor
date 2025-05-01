@@ -1,0 +1,83 @@
+﻿@page "/signup"
+
+<div class="d-flex justify-content-center align-items-center w-100 vh-100">
+	@* <form class="row g-3 bg-secondary-subtle w-25">
+		<h1 class="text-center">Sign up</h1>
+		<div class="col-12">
+			<label for="validationDefault01" class="form-label">First name</label>
+			<input type="text" class="form-control" id="validationDefault01" value="Mark" required>
+		</div>
+		<div class="col-12">
+			<label for="validationDefault02" class="form-label">Last name</label>
+			<input type="text" class="form-control" id="validationDefault02" value="Otto" required>
+		</div>
+		<div class="col-12">
+			<label for="validationDefaultUsername" class="form-label">Username</label>
+			<div class="input-group">
+				<span class="input-group-text" id="inputGroupPrepend2"></span>
+				<input type="text" class="form-control" id="validationDefaultUsername" aria-describedby="inputGroupPrepend2" required>
+			</div>
+		</div>
+		<div class="col-12">
+			<div class="form-check">
+				<input class="form-check-input" type="checkbox" value="" id="invalidCheck2" required>
+				<label class="form-check-label" for="invalidCheck2">
+					Agree to terms and conditions
+				</label>
+			</div>
+		</div>
+		<div class="col-12 d-flex justify-content-center">
+			<button class="btn btn-primary" type="submit">Sign up</button>
+		</div>
+	</form> *@
+
+	<form class="row g-3 needs-validation w-25" novalidate>
+		<h1 class="text-center">Sign up</h1>
+		<div class="col-12">
+			<label for="validationCustom01" class="form-label">First name</label>
+			<input type="text" class="form-control" id="validationCustom01" required>
+			<div class="valid-feedback">
+				Looks good!
+			</div>
+		</div>
+		<div class="col-12">
+			<label for="validationCustom02" class="form-label">Last name</label>
+			<input type="text" class="form-control" id="validationCustom02" required>
+			<div class="valid-feedback">
+				Looks good!
+			</div>
+		</div>
+		<div class="col-12">
+			<label for="validationCustom03" class="form-label">Tax code</label>
+			<input type="text" class="form-control" id="validationCustom03" required>
+			<div class="valid-feedback">
+				Looks good!
+			</div>
+		</div>
+		<div class="col-12">
+			<label for="validationCustomUsername" class="form-label">Email</label>
+			<input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
+			<div class="invalid-feedback">
+				Please type an email.
+			</div>
+		</div>
+		<div class="col-12">
+			<div class="form-check">
+				<input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+				<label class="form-check-label" for="invalidCheck">
+					Agree to terms and conditions
+				</label>
+				<div class="invalid-feedback">
+					You must agree before submitting.
+				</div>
+			</div>
+		</div>
+		<div class="col-12 d-flex justify-content-center">
+			<button class="btn btn-primary" type="submit">Submit form</button>
+		</div>
+	</form>
+</div>
+
+@code {
+
+}
