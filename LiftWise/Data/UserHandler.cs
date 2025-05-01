@@ -21,13 +21,13 @@ namespace LiftWise.Data
         ///     2 se il login ha avuto successo
         ///     1 se l'utente è inesistente
         ///     0 se la password inserita è errata
-        ///     -1 se è stata sollevata un'ecczzione durante l'accesso al database
+        ///     -1 se è stata sollevata un'eccezione durante l'accesso al database
         /// </returns>
         public int Login(string email, string password)
         {
             SqliteConnection conn = new SqliteConnection(connString);
             SqliteParameter parEmail = new SqliteParameter("@parEmail", email);
-            SqliteCommand cmd = new SqliteCommand("SELECT count(idUser) as nUsers FROM tblUtenti WHERE email = @parEmail", conn);
+            SqliteCommand cmd = new SqliteCommand("SELECT COUNT(idUser) as nUsers FROM tblUsers WHERE email = @parEmail", conn);
             cmd.Parameters.Add(parEmail);
             try
             {
@@ -45,7 +45,7 @@ namespace LiftWise.Data
                 return -1;
             }
 
-            cmd = new SqliteCommand("SELECT * FROM tblUtenti WHERE email = @parEmail", conn);
+            cmd = new SqliteCommand("SELECT * FROM tblUsers WHERE email = @parEmail", conn);
             cmd.Parameters.Add(parEmail);
             try
             {

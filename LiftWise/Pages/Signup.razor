@@ -105,7 +105,6 @@
 				case 1:
 					Console.WriteLine($"User {firstname} {lastname} registered successfully");
 					error = "";
-					// redirect to login
 					navigationManager.NavigateTo("/login");
 					break;
 				case 0:
@@ -113,8 +112,8 @@
 					error = $"A user with email \"{email}\" is already registered";
 					break;
 				case -1:
-					Console.WriteLine("An error has occured during user creation.");
-					error = "An error has occured during user creation.";
+					Console.WriteLine("An error has occured during user creation");
+					error = "An error has occured during user creation";
 					break;
 				default:
 					break;

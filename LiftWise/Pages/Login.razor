@@ -65,19 +65,22 @@
 		{
 			switch (userHandler.Login(email, password))
 			{
-				case 1:
+				case 2:
 					Console.WriteLine($"User {email} login successfully");
 					error = "";
-					// redirect to homepage
 					navigationManager.NavigateTo("/");
+					break;
+				case 1:
+					Console.WriteLine("Attempting to login with a not registered user");
+					error = "Attempting to login with a not registered user";
 					break;
 				case 0:
 					Console.WriteLine("The typed password is incorrect");
-					error = $"A user with email \"{email}\" is already registered";
+					error = "The typed password is incorrect";
 					break;
 				case -1:
-					Console.WriteLine("An error has occured during login.");
-					error = "An error has occured during login.";
+					Console.WriteLine("An error has occured during login");
+					error = "An error has occured during login";
 					break;
 				default:
 					break;
