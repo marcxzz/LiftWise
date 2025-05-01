@@ -1,3 +1,88 @@
 ﻿@page "/login"
+@using LiftWise.Data
+@inject IUserHandler userHandler
+@inject NavigationManager navigationManager
 
-<h3>Login</h3>
+<div class="d-flex justify-content-center align-items-center w-100 vh-100">
+	<form class="row g-3 needs-validation w-25" @onsubmit="RegisterUser_Click" id="signupForm" novalidate>
+		<h1 class="text-center fw-xbold text-primary">LiftWise</h1>
+		<h3 class="text-center">Log in</h3>
+		@if (error != "")
+		{
+			<div class="alert alert-danger" role="alert">
+				@error
+			</div>
+		}
+		<div class="col-12">
+			<label for="validationCustomEmail" class="form-label">Email</label>
+			<input type="text" class="form-control" id="validationCustomEmail" @bind="email" required>
+			<div class="invalid-feedback">
+				Please type an email.
+			</div>
+		</div>
+		<div class="col-12">
+			<label for="validationCustomPassword" class="form-label">Password</label>
+			<input type="password" class="form-control" id="validationCustomPassword" @bind="password" required>
+			<div class="invalid-feedback">
+				Please type a password.
+			</div>
+		</div>
+		<div class="col-12 d-flex justify-content-center">
+			<button class="btn btn-primary" type="submit">Log in</button>
+		</div>
+	</form>
+</div>
+<script>
+	// Example starter JavaScript for disabling form submissions if there are invalid fields
+	(function () {
+		'use strict'
+
+		// Fetch all the forms we want to apply custom Bootstrap validation styles to
+		var forms = document.querySelectorAll('.needs-validation')
+
+		// Loop over them and prevent submission
+		Array.prototype.slice.call(forms)
+		.forEach(function (form) {
+			form.addEventListener('submit', function (event) {
+				if (!form.checkValidity()) {
+					event.preventDefault()
+					event.stopPropagation()
+				}
+
+				form.classList.add('was-validated')
+			}, false)
+		})
+	})()
+</script>
+
+@code {
+	string email, password, error = "";
+
+	private void RegisterUser_Click()
+	{
+		if (!string.IsNullOrEmpty(email) &&
+			!string.IsNullOrEmpty(password))
+		{
+			switch (userHandler.Login(email, password))
+			{
+				case 1:
+					Console.WriteLine($"User {email} login successfully");
+					error = "";
+					// redirect to homepage
+					navigationManager.NavigateTo("/");
+					break;
+				case 0:
+					Console.WriteLine("The typed password is incorrect");
+					error = $"A user with email \"{email}\" is already registered";
+					break;
+				case -1:
+					Console.WriteLine("An error has occured during login.");
+					error = "An error has occured during login.";
+					break;
+				default:
+					break;
+			}
+		}
+		else Console.WriteLine("Cannot login: there are empty fields");
+	}
+}
