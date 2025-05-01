@@ -50,11 +50,12 @@ input, .input-group-text {
     }
 
 form#signupForm {
-    max-width: 350px !important;
+    width: 350px !important;
 }
 @media screen and (max-width: 383px) {
     form#signupForm {
-        width: 100%;
+        width: auto !important;
+        max-width: 100% !important;
     }
 }
 
