@@ -151,6 +151,6 @@ namespace LiftWise.Data
             return sBuilder.ToString();            
         }
 
-        public User ActiveUser { get => activeUser; }
+        public User? ActiveUser { get => activeUser; }
     }
 }
