@@ -30,9 +30,9 @@ CREATE TABLE IF NOT EXISTS tblReservations (
     UNIQUE(userId, gymId, reservationDate, startTime)
 );
 
--- Tabella: tblSubscriptions
-CREATE TABLE IF NOT EXISTS tblSubscriptions (
-    idSubscription INTEGER PRIMARY KEY AUTOINCREMENT,
+-- Tabella: tblMemberships
+CREATE TABLE IF NOT EXISTS tblMemberships (
+    idMembership INTEGER PRIMARY KEY AUTOINCREMENT,
     userId INTEGER NOT NULL,
     gymId INTEGER NOT NULL,
     startDate DATE NOT NULL,
