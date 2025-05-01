@@ -1,12 +1,13 @@
 ﻿@page "/"
 @using LiftWise.Data
 @inject IUserHandler userHandler
+@inject NavigationManager navigationManager
 
-<h1>Bentornato, John</h1>
-@if (userHandler.ActiveUser != null)
+<h1>Bentornato, @userHandler.ActiveUser.firstName</h1>
+@* @if (userHandler.ActiveUser != null)
 {
-	<p>@userHandler.ActiveUser.email</p>
-}
+	<p>user logged in</p>
+} *@
 
 <div class="container-fluid">
 	<div class="row gap-3 row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-5">
@@ -25,5 +26,9 @@
 </div>
 
 @code{
-	
+	protected override async Task OnInitializedAsync()
+	{
+		// base.OnInitialized();
+		if (userHandler.ActiveUser == null) navigationManager.NavigateTo("/login");
+	}
 }

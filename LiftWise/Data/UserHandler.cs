@@ -57,6 +57,7 @@ namespace LiftWise.Data
                     user = new User
                     {
                         idUser = Convert.ToInt32(dr["idUser"]),
+                        firstName = dr["firstName"].ToString(),
                         email = dr["email"].ToString(),
                         passwordHash = dr["passwordHash"].ToString()
                     };
