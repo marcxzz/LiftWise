@@ -84,7 +84,7 @@ namespace LiftWise.Data
         ///     0 se l'utente è gia presente.
         ///     -1 se le operazioni al db hanno sollevato un eccezione.
         /// </returns>
-        public int Register(string name, string surname, string taxCode, string email, string password)
+        public int Register(string firstName, string lastName, string taxCode, string email, string password)
         {
             List<string> emails = new List<string>();
             SqliteConnection conn = new SqliteConnection(connString);
@@ -110,9 +110,9 @@ namespace LiftWise.Data
             if (!emails.Contains(email))
             {
                 string passwordHash = MD5Hash(password);
-                SqliteParameter parName = new SqliteParameter("@parName", email);
-                SqliteParameter parSurname = new SqliteParameter("@parSurname", email);
-                SqliteParameter parTaxCode = new SqliteParameter("@parTaxCode", email);
+                SqliteParameter parName = new SqliteParameter("@parName", firstName);
+                SqliteParameter parSurname = new SqliteParameter("@parSurname", lastName);
+                SqliteParameter parTaxCode = new SqliteParameter("@parTaxCode", taxCode);
                 SqliteParameter parEmail = new SqliteParameter("@parEmail", email);
                 cmd = new SqliteCommand($"INSERT INTO tblUsers(name, surname, taxCode, email, passwordHash) VALUES (@parName, @parSurname, @parTaxCode, @parEmail, '{passwordHash}')", conn);
                 cmd.Parameters.Add(parName);
