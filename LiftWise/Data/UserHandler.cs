@@ -18,7 +18,8 @@ namespace LiftWise.Data
         /// <param name="email">email inserita dall'utente</param>
         /// <param name="password">password inserita dall'utente</param>
         /// <returns>
-        ///     1 se il login ha avuto successo
+        ///     2 se il login ha avuto successo
+        ///     1 se l'utente è inesistente
         ///     0 se la password inserita è errata
         ///     -1 se è stata sollevata un'ecczzione durante l'accesso al database
         /// </returns>
@@ -26,9 +27,26 @@ namespace LiftWise.Data
         {
             SqliteConnection conn = new SqliteConnection(connString);
             SqliteParameter parEmail = new SqliteParameter("@parEmail", email);
-            SqliteCommand cmd = new SqliteCommand("SELECT * FROM tblUtenti WHERE email = @parEmail", conn);
+            SqliteCommand cmd = new SqliteCommand("SELECT count(idUser) as nUsers FROM tblUtenti WHERE email = @parEmail", conn);
             cmd.Parameters.Add(parEmail);
+            try
+            {
+                conn.Open();
+                int nUtenti = Convert.ToInt32(cmd.ExecuteScalar());
+                if(nUtenti == 0)
+                {
+                    return 1;
+                }
+                conn.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return -1;
+            }
 
+            cmd = new SqliteCommand("SELECT * FROM tblUtenti WHERE email = @parEmail", conn);
+            cmd.Parameters.Add(parEmail);
             try
             {
                 conn.Open();
@@ -47,7 +65,7 @@ namespace LiftWise.Data
                 if(MD5Hash(password) == user.passwordHash)
                 {
                     activeUser = user;
-                    return 1;
+                    return 2;
                 }
                 else
                 {
@@ -114,7 +132,7 @@ namespace LiftWise.Data
                 SqliteParameter parSurname = new SqliteParameter("@parSurname", lastName);
                 SqliteParameter parTaxCode = new SqliteParameter("@parTaxCode", taxCode);
                 SqliteParameter parEmail = new SqliteParameter("@parEmail", email);
-                cmd = new SqliteCommand($"INSERT INTO tblUsers(name, surname, taxCode, email, passwordHash) VALUES (@parName, @parSurname, @parTaxCode, @parEmail, '{passwordHash}')", conn);
+                cmd = new SqliteCommand($"INSERT INTO tblUsers(firstName, lastName, taxCode, email, passwordHash) VALUES (@parName, @parSurname, @parTaxCode, @parEmail, '{passwordHash}')", conn);
                 cmd.Parameters.Add(parName);
                 cmd.Parameters.Add(parSurname);
                 cmd.Parameters.Add(parTaxCode);
