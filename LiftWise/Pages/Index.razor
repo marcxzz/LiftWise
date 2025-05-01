@@ -1,9 +1,11 @@
 ﻿@page "/"
+@using LiftWise.Data
+@inject IUserHandler userHandler
 
 <h1>Bentornato, John</h1>
 
 <div class="container-fluid">
-	<div class="row gap-3">
+	<div class="row gap-3 row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-5">
 		<div class="col">
 			<div class="card">
 				<div class="card-body">
@@ -17,3 +19,7 @@
 		</div>
 	</div>
 </div>
+
+@code{
+	
+}

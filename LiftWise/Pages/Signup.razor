@@ -1,30 +1,37 @@
 ﻿@page "/signup"
 @using LiftWise.Data
 @inject IUserHandler userHandler
+@inject NavigationManager navigationManager
 
 <div class="d-flex justify-content-center align-items-center w-100 vh-100">
-	<form class="row g-3 needs-validation w-25" @onsubmit="RegisterUser_Click" id="signupForm">
+	<form class="row g-3 needs-validation w-25" @onsubmit="RegisterUser_Click" id="signupForm" novalidate>
 		<h1 class="text-center fw-xbold text-primary">LiftWise</h1>
 		<h3 class="text-center">Sign up</h3>
+		@if (error != "")
+		{
+			<div class="alert alert-danger" role="alert">
+				@error
+			</div>
+		}
 		<div class="col-12">
 			<label for="validationCustom01" class="form-label">First name</label>
 			<input type="text" class="form-control" id="validationCustom01" @bind="firstname" required maxlength="50">
-			<div class="valid-feedback">
-				Looks good!
+			<div class="invalid-feedback">
+				Please type your first name.
 			</div>
 		</div>
 		<div class="col-12">
 			<label for="validationCustom02" class="form-label">Last name</label>
 			<input type="text" class="form-control" id="validationCustom02" @bind="lastname" required maxlength="50">
-			<div class="valid-feedback">
-				Looks good!
+			<div class="invalid-feedback">
+				Please type your last name.
 			</div>
 		</div>
 		<div class="col-12">
 			<label for="validationCustom03" class="form-label">Tax code</label>
 			<input type="text" class="form-control" id="validationCustom03" @bind="taxcode" required maxlength="16">
-			<div class="valid-feedback">
-				Looks good!
+			<div class="invalid-feedback">
+				Please type your tax code.
 			</div>
 		</div>
 		<div class="col-12">
@@ -36,14 +43,14 @@
 		</div>
 		<div class="col-12">
 			<label for="validationCustomPassword" class="form-label">Password</label>
-			<input type="password" class="form-control" id="validationCustomPassword" @bind="password" required>
+			<input type="password" class="form-control" id="validationCustomPassword" @bind="password" required minlength="8">
 			<div class="invalid-feedback">
 				Please type a password.
 			</div>
 		</div>
 		<div class="col-12">
 			<div class="form-check">
-				<input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+				<input class="form-check-input" type="checkbox" value="" id="invalidCheck" @bind="termsAccepted" required>
 				<label class="form-check-label" for="invalidCheck">
 					Agree to terms and conditions.
 				</label>
@@ -57,9 +64,32 @@
 		</div>
 	</form>
 </div>
+<script>
+	// Example starter JavaScript for disabling form submissions if there are invalid fields
+	(function () {
+		'use strict'
+
+		// Fetch all the forms we want to apply custom Bootstrap validation styles to
+		var forms = document.querySelectorAll('.needs-validation')
+
+		// Loop over them and prevent submission
+		Array.prototype.slice.call(forms)
+		.forEach(function (form) {
+			form.addEventListener('submit', function (event) {
+				if (!form.checkValidity()) {
+					event.preventDefault()
+					event.stopPropagation()
+				}
+
+				form.classList.add('was-validated')
+			}, false)
+		})
+	})()
+</script>
 
 @code {
-	string firstname, lastname, taxcode, email, password = "";
+	string firstname, lastname, taxcode, email, password, error = "";
+	bool termsAccepted = false;
 
 	private void RegisterUser_Click()
 	{
@@ -67,22 +97,29 @@
 			!string.IsNullOrEmpty(lastname) &&
 			!string.IsNullOrEmpty(taxcode) &&
 			!string.IsNullOrEmpty(email) &&
-			!string.IsNullOrEmpty(password))
+			!string.IsNullOrEmpty(password) &&
+			termsAccepted)
 		{
 			switch (userHandler.Register(firstname, lastname, taxcode, email, password))
 			{
 				case 1:
 					Console.WriteLine($"User {firstname} {lastname} registered successfully");
+					error = "";
+					// redirect to login
+					navigationManager.NavigateTo("/login");
 					break;
 				case 0:
 					Console.WriteLine($"A user with email \"{email}\" is already registered");
+					error = $"A user with email \"{email}\" is already registered";
 					break;
 				case -1:
 					Console.WriteLine("An error has occured during user creation.");
+					error = "An error has occured during user creation.";
 					break;
 				default:
 					break;
 			}
-		} else Console.WriteLine("Cannot register user: there are empty fields");
+		}
+		else Console.WriteLine("Cannot register user: there are empty fields");
 	}
 }
