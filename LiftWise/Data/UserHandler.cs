@@ -10,7 +10,7 @@ namespace LiftWise.Data
     public class UserHandler : IUserHandler
     {
         private User? activeUser = null;
-        private string connString = @"Data Source=../Data/dbLiftWise.db";
+        private string connString = @"Data Source=dbLiftWise.db";
 
         /// <summary>
         /// Effettua il login
