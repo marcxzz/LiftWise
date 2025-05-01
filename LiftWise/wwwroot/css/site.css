@@ -1,26 +1,62 @@
 @import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
 @import url('https://fonts.googleapis.com/css2?family=REM:ital,wght@0,100..900;1,100..900&display=swap');
 
+/* BEGIN CUSTOM STYLES */
+
 :root {
     --body-bg: #F8E9E6;
     --body-bg-dark: #F3D7D0;
     --primary-color: #D86249;
+    --primary-color-rgb: 216, 98, 73;
     --white: #fff;
     --black: #0000;
 }
+
+/* BEGIN HELPERS */
+
+.text-primary {
+    color: var(--primary-color) !important;
+}
+
+.fw-xbold {
+    font-weight: 900;
+}
+
+/* END HELPERS */
 
 input, .input-group-text {
     background-color: var(--body-bg-dark) !important;
     border: none !important;
 }
+    input[type="checkbox"]:checked {
+        background-color: var(--primary-color) !important;
+    }
+    input:active, input:focus,
+    button:active, button:focus {
+        box-shadow: none !important;
+    }
 
-button.btn-primary {
-    background-color: var(--primary-color);
+.btn-primary {
+    background-color: var(--primary-color) !important;
     border: none;
 }
-    button.btn-primary:active, button.btn-primary:focus {
-        
+    .btn-primary:hover {
+        /*background-color: rgba(var(--primary-color-rgb), 0.9) !important;*/
+        filter: brightness(95%) !important;
     }
+    .btn-primary:active, .btn-primary:focus {
+        /*background-color: rgba(var(--primary-color-rgb), 0.8) !important;*/
+        filter: brightness(85%) !important;
+    }
+
+form#signupForm {
+    max-width: 350px !important;
+}
+@media screen and (max-width: 383px) {
+    form#signupForm {
+        width: 100%;
+    }
+}
 
 /* END CUSTOM STYLES*/
 

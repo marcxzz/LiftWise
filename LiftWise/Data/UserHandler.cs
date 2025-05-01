@@ -10,7 +10,7 @@ namespace LiftWise.Data
     public class UserHandler : IUserHandler
     {
         private User? activeUser = null;
-        private string connString = @"Data Source=dbLiftWise.db";
+        private string connString = @"Data Source=Data/dbLiftWise.db";
 
         /// <summary>
         /// Effettua il login
@@ -82,7 +82,7 @@ namespace LiftWise.Data
         /// <returns>
         ///     1 se l'utente è stato inserito.
         ///     0 se l'utente è gia presente.
-        ///     -1 se le operazioni al db hanno sollevato un eccezzione.
+        ///     -1 se le operazioni al db hanno sollevato un eccezione.
         /// </returns>
         public int Register(string name, string surname, string taxCode, string email, string password)
         {
@@ -114,7 +114,7 @@ namespace LiftWise.Data
                 SqliteParameter parSurname = new SqliteParameter("@parSurname", email);
                 SqliteParameter parTaxCode = new SqliteParameter("@parTaxCode", email);
                 SqliteParameter parEmail = new SqliteParameter("@parEmail", email);
-                cmd = new SqliteCommand($"INSERT INTO tblUsers(name, surname, taxCode, email, passwordHash) VALUES (@parName, @parSurname, @parTaxCode, @parEmail, {passwordHash})", conn);
+                cmd = new SqliteCommand($"INSERT INTO tblUsers(name, surname, taxCode, email, passwordHash) VALUES (@parName, @parSurname, @parTaxCode, @parEmail, '{passwordHash}')", conn);
                 cmd.Parameters.Add(parName);
                 cmd.Parameters.Add(parSurname);
                 cmd.Parameters.Add(parTaxCode);

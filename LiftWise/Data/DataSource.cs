@@ -7,7 +7,7 @@ namespace LiftWise.Data
 {
     public class DataSource : IDataSource
     {
-        public string connString = @"Data Source=dbLiftWise.db";
+        public string connString = @"Data Source=Data/dbLiftWise.db";
         public List<AbbVisualizzato> GetAbbonamenti(int idUtente)
         {
             SqliteConnection conn = new SqliteConnection(connString);
