@@ -1,4 +1,6 @@
 ﻿@page "/signup"
+@using LiftWise.Data
+@inject IUserHandler userHandler
 
 <div class="d-flex justify-content-center align-items-center w-100 vh-100">
 	@* <form class="row g-3 bg-secondary-subtle w-25">
@@ -35,37 +37,44 @@
 		<h1 class="text-center">Sign up</h1>
 		<div class="col-12">
 			<label for="validationCustom01" class="form-label">First name</label>
-			<input type="text" class="form-control" id="validationCustom01" required>
+			<input type="text" class="form-control" id="validationCustom01" @bind="firstname" required maxlength="50">
 			<div class="valid-feedback">
 				Looks good!
 			</div>
 		</div>
 		<div class="col-12">
 			<label for="validationCustom02" class="form-label">Last name</label>
-			<input type="text" class="form-control" id="validationCustom02" required>
+			<input type="text" class="form-control" id="validationCustom02" @bind="lastname" required maxlength="50">
 			<div class="valid-feedback">
 				Looks good!
 			</div>
 		</div>
 		<div class="col-12">
 			<label for="validationCustom03" class="form-label">Tax code</label>
-			<input type="text" class="form-control" id="validationCustom03" required>
+			<input type="text" class="form-control" id="validationCustom03" @bind="taxcode" required maxlength="16">
 			<div class="valid-feedback">
 				Looks good!
 			</div>
 		</div>
 		<div class="col-12">
-			<label for="validationCustomUsername" class="form-label">Email</label>
-			<input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
+			<label for="validationCustomEmail" class="form-label">Email</label>
+			<input type="text" class="form-control" id="validationCustomEmail" @bind="email" required maxlength="320">
 			<div class="invalid-feedback">
 				Please type an email.
+			</div>
+		</div>
+		<div class="col-12">
+			<label for="validationCustomPassword" class="form-label">Password</label>
+			<input type="password" class="form-control" id="validationCustomPassword" @bind="password" required>
+			<div class="invalid-feedback">
+				Please type a password.
 			</div>
 		</div>
 		<div class="col-12">
 			<div class="form-check">
 				<input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
 				<label class="form-check-label" for="invalidCheck">
-					Agree to terms and conditions
+					Agree to terms and conditions.
 				</label>
 				<div class="invalid-feedback">
 					You must agree before submitting.
@@ -73,11 +82,24 @@
 			</div>
 		</div>
 		<div class="col-12 d-flex justify-content-center">
-			<button class="btn btn-primary" type="submit">Submit form</button>
+			<button class="btn btn-primary" type="submit" @onclick="RegisterUser_Click">Submit form</button>
 		</div>
 	</form>
 </div>
 
 @code {
+	string firstname, lastname, taxcode, email, password = "";
 
+	private void RegisterUser_Click()
+	{
+		if (!string.IsNullOrEmpty(firstname) &&
+			!string.IsNullOrEmpty(lastname) &&
+			!string.IsNullOrEmpty(taxcode) &&
+			!string.IsNullOrEmpty(email) &&
+			!string.IsNullOrEmpty(password))
+		{
+			userHandler.Register(firstname, lastname, taxcode, email, password);
+		}
+		Console.WriteLine($"User {firstname} {lastname} registered successfully");
+	}
 }
