@@ -1,20 +1,16 @@
 # 📚 LiftWise
 
-LiftWise is a web service designed to simplify the management of gym memberships, subscriptions and reservations. With an intuitive interface, any user can sign up, subscribe and renew subscriptions, as well as book admission to different fitness centers without any difficulty.
+LiftWise is a web service designed to simplify the management of gym memberships and reservations. With an intuitive interface, any user can sign up, subscribe and renew subscriptions, as well as book admission to different fitness centers without any difficulty.
 
 > ✨ Elevate your fitness experience
 
 ## 📘 Project Info
 
-**Authors**: [Angioni Marco](https://github.com/Marcxzz), [Lorenzo Ledda](https://github.com/diodoLedd), [Putzu Andrea](https://github.com/andrexswampert), [Sforza Davide](https://github.com/dvsf06)
-
-**Team name**: Strugas (at I.I.S. "Michele Giua" Cagliari - class 5°A 2024/2025)  
-
-**Development start date**: 2025/05/01
-
-**Version of analysis**: 0.1
-
-**Project status**: in progress
+- **Authors**: [Angioni Marco](https://github.com/Marcxzz), [Lorenzo Ledda](https://github.com/diodoLedd), [Putzu Andrea](https://github.com/andrexswampert), [Sforza Davide](https://github.com/dvsf06)
+- **Team name**: Strugas (at I.I.S. "Michele Giua" Cagliari - class 5°A 2024/2025)  
+- **Development start date**: 2025/05/01
+- **Version of analysis**: 0.1
+- **Project status**: in progress
 
 ## 🧱 System Analysis
 
@@ -22,14 +18,14 @@ In analyzing the first version of the project, we identified the following entit
 
 - Users
 - Gyms
-- Subscriptions
+- Memberships
 - Reservations
 
-The **User** is the primary actor in the system: it is assigned a unique system-generated identifier, along with master and login information. Among such information, the email address plays a crucial role because it serves as the login and must therefore be unique across the platform, while first and last name can safely be repeated among distinct profiles. Each time a User subscribes to a **Subscription**, a Subscription record is created that tracks its validity period. The same User can have multiple Subscriptions of the same type as long as the dates do not overlap (this will be handled by backend logic).
+The **User** is the primary actor in the system: it is assigned a unique system-generated identifier, along with master and login information. Among such information, the email address plays a crucial role because it serves as the login and must therefore be unique across the platform, while first and last name can safely be repeated among distinct profiles. Each time a User subscribes to a **Membership**, a Membership record is created that tracks its validity period. The same User can have multiple Membership of the same type as long as the dates do not overlap (this will be handled by backend logic).
 
 The concept of **Gym** is equally central: each gym receives a unique identifier and maintains descriptive attributes such as name, address, and maximum capacity. The uniqueness constraint applies to the combination of name and address, so as to avoid duplicate master records while still allowing multiple facilities to carry the same name if located in different locations (will be handled by backend logic). Gyms serve as destinations for **Reservations** that Users can make. Each Reservation records date, start time, and end time. To protect usability, the system must prevent duplication: a User is not allowed to book the same time slot for the same Gym twice (it will be handled by the backend logic).
 
-Thus, a User can have multiple Subscriptions over time and multiple Reservations, while a Gymnasium can accommodate many Reservations of different Users in parallel up to the limit of its capacity.
+Thus, a User can have multiple Membership over time and multiple Reservations, while a Gymnasium can accommodate many Reservations of different Users in parallel up to the limit of its capacity.
 
 ## 🗨️ Conceptual Level: Class Diagram
 
@@ -54,7 +50,7 @@ Thus, a User can have multiple Subscriptions over time and multiple Reservations
         - maxCapacity: INT
     }
 
-    class Subscription {
+    class Membership {
         - idSubscription: INT
         - startDate: DATE
         - endDate: DATE
@@ -67,8 +63,8 @@ Thus, a User can have multiple Subscriptions over time and multiple Reservations
         - endTime: TIME
     }
 
-    User "1" -- "N" Subscription : Subscribe
-    Subscription "N" -- "1" Gym : Offer
+    User "1" -- "N" Membership : Subscribe
+    Membership "N" -- "1" Gym : Offer
     Gym "1" -- "N" Reservation : Receive
     Reservation "N" -- "1" User : Make
 ```
@@ -107,16 +103,16 @@ we use GitHub as the main repository for code, facilitating system cooperation a
       - `address` CHAR(150)
       - `maxCapacity` INT
     - Add unique constraint on (`name`, `address`).
-  - [x] **Define `Subscription` scheme**.
-    - Create table `tblSubscriptions` with columns:
-      - `idSubscription` INT PK AI
+  - [x] **Define `Membership` scheme**.
+    - Create table `tblMemberships` with columns:
+      - `idMembership` INT PK AI
       - `userId` INT FK → `tblUsers.idUser`
       - `gymId` INT FK → `tblGyms.idGym`
       - `startDate` DATE
       - `endDate` DATE
-  - [x] **Subscription Logic**
-    - Manage subscription subscription: check that for the same `idUser` there are no active `Subscriptions` with overlapping periods
-    - Manage subscription status.
+  - [x] **Membership Logic**
+    - Manage subscription membership: check that for the same `idUser` there are no active `Membership` with overlapping periods
+    - Manage membership status.
   - [x] **Define `Reservation` scheme**.
     - Create `tblReservations` table with columns:
       - `idReservation` INT PK
@@ -127,7 +123,7 @@ we use GitHub as the main repository for code, facilitating system cooperation a
       - `endTime` TIME
   - [x] **Reservation Logic**
     - Manage reservations:
-      - Check that the same `idUser` does not already have a `Reservation` in the same time slot `startTime` - `endTime` for the same `idGym`
+      - Check that the same `idUser` does not already have a `Reservation` in the same `startTime` for the same `idGym`
       - Check that the number of active reservations in that period does not exceed `tblGyms.maxCapacity`
     - Manage CRUD
   - [x] **Documentation**
@@ -155,8 +151,8 @@ CREATE TABLE tblGyms (
     UNIQUE(name, address)
 );
 
-CREATE TABLE tblSubscriptions (
-    idSubscription INTEGER PRIMARY KEY AUTOINCREMENT,
+CREATE TABLE tblMemberships (
+    idMembership INTEGER PRIMARY KEY AUTOINCREMENT,
     userId INTEGER NOT NULL,
     gymId INTEGER NOT NULL,
     startDate DATE NOT NULL,
