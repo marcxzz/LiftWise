@@ -4,6 +4,6 @@ namespace LiftWise.Data
 {
     public interface IDataSource
     {
-        public List<ViewedSubscription> GetSubscriptions(int idUtente);
+        public List<ViewedMembership> GetMemberships(int idUtente);
     }
 }

@@ -8,20 +8,20 @@ namespace LiftWise.Data
     public class DataSource : IDataSource
     {
         public string connString = @"Data Source=Data/dbLiftWise.db";
-        public List<ViewedSubscription> GetSubscriptions(int idUser)
+        public List<ViewedMembership> GetMemberships(int idUser)
         {
             SqliteConnection conn = new SqliteConnection(connString);
-            SqliteCommand cmd = new SqliteCommand($"SELECT * FROM tblSubscriptions INNER JOIN tblGym ON tblSubscriptions.gymId = tblGyms.idGym WHERE tblSubsciptions.userId = {idUser}", conn);
+            SqliteCommand cmd = new SqliteCommand($"SELECT * FROM tblSubscriptions INNER JOIN tblGym ON tblMemberships.gymId = tblGyms.idGym WHERE tblSubsciptions.userId = {idUser}", conn);
             try
             {
                 conn.Open();
                 SqliteDataReader dr = cmd.ExecuteReader();
-                List<ViewedSubscription> abbonamenti = new List<ViewedSubscription>();
+                List<ViewedMembership> abbonamenti = new List<ViewedMembership>();
                 while (dr.Read())
                 {
-                    abbonamenti.Add(new ViewedSubscription
+                    abbonamenti.Add(new ViewedMembership
                     {
-                        idSubscription = Convert.ToInt32(dr["idSubscription"]),
+                        idMembership = Convert.ToInt32(dr["idMembership"]),
                         userId = Convert.ToInt32(dr["userId"]),
                         gymId = Convert.ToInt32(dr["gymId"]),
                         startDate = DateOnly.Parse(dr["startDate"].ToString()),
@@ -35,7 +35,7 @@ namespace LiftWise.Data
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
-                return new List<ViewedSubscription>();
+                return new List<ViewedMembership>();
             }
         }
     }
