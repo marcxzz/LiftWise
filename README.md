@@ -143,7 +143,7 @@ CREATE TABLE tblUsers (
 
 CREATE TABLE tblGyms (
     idGym INTEGER PRIMARY KEY AUTOINCREMENT,
-    name CHAR(100) NOT NULL,
+    name CHAR(100) NOT NULL, 
     telephone CHAR(20),
     email CHAR(320),
     address CHAR(150) NOT NULL,
