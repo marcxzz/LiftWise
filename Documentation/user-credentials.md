@@ -1,0 +1,12 @@
+| Email | Password |
+| - | - |
+| luca.rossi@example.com | lucarossi90 |
+| giulia.bianchi@example.com | white.92 |
+| marco.verdi@example.com | mverdi85 |
+| francesca.russo@example.com | francy_russo |
+| alessandro.ferrari@example.com | alex.f40 |
+| sara.esposito@example.com | sara-esposito-94 |
+| davide.marino@example.com | david.marino93 |
+| elena.gallo@example.com | password123 |
+| simone.fontana@example.com | simon_brunnen89 |
+| martina.greco@example.com | martygreco |
