@@ -29,7 +29,7 @@ Thus, a User can have multiple Membership over time and multiple Reservations, w
 
 ## 🗨️ Conceptual Level: Class Diagram
 
-```Mermaid
+```mermaid
     classDiagram
     
     class User {
