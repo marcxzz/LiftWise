@@ -1,21 +1,20 @@
-﻿<nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: rgba(0, 0, 0, .9);">
-    <div class="container m-0 p-2">
-        <a class="navbar-brand" href="#">LiftWise</a>
-        <button class="navbar-toggler" type="button" @onclick="ToggleNavMenu" aria-controls="navbarResponsive"
-                aria-expanded="@(!collapseNavMenu)" aria-label="Toggle navigation">
+﻿<nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #222;">
+    <div class="container-fluid m-0 px-3">
+        <a class="navbar-brand" href="/"><h3 class="m-0 fw-bold">LiftWise</h3></a>
+        <button class="navbar-toggler" type="button" @onclick="ToggleNavMenu" aria-controls="navbarResponsive" aria-expanded="@(!collapseNavMenu)" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse @(collapseNavMenu ? "" : "show")" id="navbarResponsive">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <NavLink class="fw-bold m-1" href="">
-                        Profilo <span class="oi oi-person"></span>
-                    </NavLink>
+                    <a class="nav-link fw-bold" href="/profile">
+                        <i class="bi bi-person-circle"></i> Profile
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <NavLink class="fw-bold m-1" href="">
-                        Home <span class="oi oi-home" aria-hidden="true"></span>
-                    </NavLink>
+                    <a class="nav-link fw-bold active" href="/">
+                        <i class="bi bi-house-fill"></i> Home
+                    </a>
                 </li>
             </ul>
         </div>
