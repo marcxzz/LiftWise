@@ -9,21 +9,52 @@
 	<p>user logged in</p>
 } *@
 
-<div class="container-fluid">
-	<div class="row gap-3 row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-5">
-		<div class="col">
-			<div class="card">
-				<div class="card-body">
-					<h5 class="card-title">FitUP</h5>
-					<h6 class="card-subtitle mb-2 text-muted">Via I. Newton, 11, 09131 Cagliari CA</h6>
-					<span class="badge rounded-pill bg-success">23 posti disponibili</span>
-					<span class="badge rounded-pill bg-success">Aperto H24</span>
-					@* <a href="#" class="card-link">Prenota</a> *@
+<section id="prenota">
+	<div class="container">
+		<div class="row g-1 justify-content-center">
+			<div class="col-lg-3 col-md-6 col-sd-12">
+				<div class="p-3 h-100">
+					<div class="card text-center h-100 d-flex flex-column">
+						<div class="card-body">
+							<h5 class="card-title mb-0 fw-bold">FitUp</h5>
+						</div>
+						<ul class="list-group list-group-flush">
+							<li class="list-group-item">Via I. Newton, 11, 09131 Cagliari CA</li>
+							<li class="list-group-item badge rounded-pill bg-success">23 posti disponibili</li>
+							<li class="list-group-item badge rounded-pill bg-success">Aperto H24</li>
+						</ul>
+						<div class="card-footer p-3">
+							<a href="" class="btn btn-primary fc-white text-uppercase fw-bold text-white w-100 p-2">Prenota</a>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-</div>
+</section>
+<section id="Abbonamenti">
+	<div class="container">
+		<div class="row g-1 justify-content-center">
+			<div class="col-lg-3 col-md-6 col-sd-12">
+				<div class="p-3 h-100">
+					<div class="card text-center h-100 d-flex flex-column">
+						<div class="card-body">
+							<h5 class="card-title mb-0 fw-bold">FitUp</h5>
+						</div>
+						<ul class="list-group list-group-flush">
+							<li class="list-group-item">start date - end date</li>
+							<li class="list-group-item badge rounded-pill bg-success">totale mesi</li>
+							<li class="list-group-item badge rounded-pill bg-success">in scadenza</li>
+						</ul>
+						<div class="card-footer p-3">
+							<a href="" class="btn btn-primary fc-white text-uppercase fw-bold text-white w-100 p-2">Prenota</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
 
 @code{
 	protected override async Task OnInitializedAsync()
