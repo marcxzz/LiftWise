@@ -31,6 +31,7 @@ Thus, a User can have multiple Membership over time and multiple Reservations, w
 
 ```mermaid
     classDiagram
+    direction LR
     
     class User {
         - idUser: INT
@@ -80,9 +81,10 @@ we opted for SQLite as the database for the development environment and local de
 - 🌳 **GitHub**:
 we use GitHub as the main repository for code, facilitating system cooperation and versioning.
 
-## 🗒️ To Do List del progetto
-
-- **version 0.1** (2025/05/01 → 2025/05/10):
+## 🗒️ Project To-Do's
+<details open>
+    <summary><b>v0.1</b> (01/05/2025 → 10/05/2025)</summary>
+    
   - [x] **Define `Users` scheme**.
     - Create `tblUsers` table with columns:
       - `idUser` INT PK AI
@@ -91,7 +93,7 @@ we use GitHub as the main repository for code, facilitating system cooperation a
       - `taxCode` CHAR(16)
       - `email` CHAR(320) UNIQUE
       - `passwordHash` CHAR(100)
-  - [ ] **Implement registration and authentication**
+  - [x] **Implement registration and authentication**
     - **Signup** with field validation, verifying uniqueness of `email` and calculation of `passwordHash` (encrypted password)
     - **Login** verifying `email` and `passwordHash`.
   - [x] **Define `Gym` scheme**.
@@ -110,7 +112,7 @@ we use GitHub as the main repository for code, facilitating system cooperation a
       - `gymId` INT FK → `tblGyms.idGym`
       - `startDate` DATE
       - `endDate` DATE
-  - [x] **Membership Logic**
+  - [ ] **Membership Logic**
     - Manage subscription membership: check that for the same `idUser` there are no active `Membership` with overlapping periods
     - Manage membership status.
   - [x] **Define `Reservation` scheme**.
@@ -121,13 +123,14 @@ we use GitHub as the main repository for code, facilitating system cooperation a
       - `reservationDate` DATE
       - `startTime` TIME
       - `endTime` TIME
-  - [x] **Reservation Logic**
+  - [ ] **Reservation Logic**
     - Manage reservations:
       - Check that the same `idUser` does not already have a `Reservation` in the same `startTime` for the same `idGym`
       - Check that the number of active reservations in that period does not exceed `tblGyms.maxCapacity`
     - Manage CRUD
   - [x] **Documentation**
     - Update README file
+</details>
 
 ## 💾 DDL
 
