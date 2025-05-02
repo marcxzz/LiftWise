@@ -1,5 +1,5 @@
 ﻿<nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: rgba(0, 0, 0, .9);">
-    <div class="container px-5">
+    <div class="container m-0 p-2">
         <a class="navbar-brand" href="#">LiftWise</a>
         <button class="navbar-toggler" type="button" @onclick="ToggleNavMenu" aria-controls="navbarResponsive"
                 aria-expanded="@(!collapseNavMenu)" aria-label="Toggle navigation">
@@ -8,12 +8,12 @@
         <div class="collapse navbar-collapse @(collapseNavMenu ? "" : "show")" id="navbarResponsive">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <NavLink class="btn btn-outline-light fw-bold m-1" href="profile">
-                        Profilo <i class="bi bi-person-circle"></i>
+                    <NavLink class="fw-bold m-1" href="">
+                        Profilo <span class="oi oi-person"></span>
                     </NavLink>
                 </li>
                 <li class="nav-item">
-                    <NavLink class="btn btn-outline-light fw-bold m-1" href="">
+                    <NavLink class="fw-bold m-1" href="">
                         Home <span class="oi oi-home" aria-hidden="true"></span>
                     </NavLink>
                 </li>
