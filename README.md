@@ -1,4 +1,4 @@
-# 📚 LiftWise
+# 🏋️‍♂️ LiftWise
 
 LiftWise is a web service designed to simplify the management of gym memberships and reservations. With an intuitive interface, any user can sign up, subscribe and renew subscriptions, as well as book admission to different fitness centers without any difficulty.
 
