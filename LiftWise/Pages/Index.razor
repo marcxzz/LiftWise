@@ -3,7 +3,7 @@
 @inject IUserHandler userHandler
 @inject NavigationManager navigationManager
 
-<h1>Bentornato, @userHandler.ActiveUser.firstName</h1>
+<h1>@(userHandler.ActiveUser != null ? $"Bentornato, {userHandler.ActiveUser.firstName}" : "")</h1>
 @* @if (userHandler.ActiveUser != null)
 {
 	<p>user logged in</p>
@@ -79,7 +79,7 @@
 @code{
 	protected override async Task OnInitializedAsync()
 	{
-		// base.OnInitialized();
+		await base.OnInitializedAsync();
 		if (userHandler.ActiveUser == null) navigationManager.NavigateTo("/login");
 	}
 }
