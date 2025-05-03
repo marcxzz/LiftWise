@@ -11,7 +11,7 @@ namespace LiftWise.Data
         public List<ViewedMembership> GetMemberships(int idUser)
         {
             SqliteConnection conn = new SqliteConnection(connString);
-            SqliteCommand cmd = new SqliteCommand($"SELECT * FROM tblSubscriptions INNER JOIN tblGym ON tblMemberships.gymId = tblGyms.idGym WHERE tblSubsciptions.userId = {idUser}", conn);
+            SqliteCommand cmd = new SqliteCommand($"SELECT * FROM tblMemberships INNER JOIN tblGyms ON tblMemberships.gymId = tblGyms.idGym WHERE tblMemberships.userId = {idUser}", conn);
             try
             {
                 conn.Open();
@@ -24,8 +24,8 @@ namespace LiftWise.Data
                         idMembership = Convert.ToInt32(dr["idMembership"]),
                         userId = Convert.ToInt32(dr["userId"]),
                         gymId = Convert.ToInt32(dr["gymId"]),
-                        startDate = DateOnly.Parse(dr["startDate"].ToString()),
-                        endDate = DateOnly.Parse(dr["endDate"].ToString()),
+                        startDate = Convert.ToDateTime(dr["startDate"]),
+                        endDate = Convert.ToDateTime(dr["endDate"]),
                         gymName = dr["name"].ToString()
                     });
                 }
