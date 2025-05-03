@@ -5,11 +5,11 @@
 @inject IDataSource dataSource
 @inject NavigationManager navigationManager
 
-<h1>@(userHandler.ActiveUser != null ? $"Bentornato, {userHandler.ActiveUser.firstName}" : "")</h1>
-@* @if (userHandler.ActiveUser != null)
+@if (userHandler.ActiveUser != null)
 {
-	<p>user logged in</p>
-} *@
+	<h1>Welcome back, @userHandler.ActiveUser.firstName</h1>
+	@* <p>user logged in</p> *@
+}
 
 <section id="aggiungi-palestra">
 	<div class="d-flex">
@@ -40,8 +40,8 @@
 						</div>
 						<ul class="list-group list-group-flush">
 							<li class="list-group-item">Via I. Newton, 11, 09131 Cagliari CA</li>
-							<li class="list-group-item badge rounded-pill text-bg-success">23 posti disponibili</li>
-							<li class="list-group-item badge rounded-pill text-bg-success">Aperto H24</li>
+							<li class="list-group-item badge rounded-pill bg-success">23 posti disponibili</li>
+							<li class="list-group-item badge rounded-pill bg-success">Aperto H24</li>
 						</ul>
 						<div class="card-footer p-3">
 							<a href="" class="btn btn-primary fc-white text-uppercase fw-bold text-white w-100 p-2">Prenota</a>
@@ -69,8 +69,8 @@
 								</div>
 								<ul class="list-group list-group-flush">
 									<li class="my-2 list-group-item">@($"{membership.startDate.ToShortDateString()} - {membership.endDate.ToShortDateString()}")</li>
-									<li class="my-2 list-group-item badge rounded-pill text-bg-success">@($"{(membership.endDate - membership.startDate).TotalNanoseconds} nanosecondi")</li>
-									<li class="my-2 list-group-item badge rounded-pill text-bg-success">in scadenza</li>
+									<li class="my-2 list-group-item badge rounded-pill bg-success">@($"{ Math.Round( (double)(((DateTime)membership.endDate - (DateTime)membership.startDate).Days / 30) ) } mesi")</li>
+									<li class="my-2 list-group-item badge rounded-pill bg-success">in scadenza</li>
 								</ul>
 								<div class="card-footer p-3">
 									<a href="" class="btn btn-primary fc-white text-uppercase fw-bold text-white w-100 p-2">Rinnova</a>
