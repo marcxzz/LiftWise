@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="site.css">
+    <title>Dashboard</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #222;">
+        <div class="container-fluid m-0 px-3">
+            <a class="navbar-brand" href="/"><h3 class="m-0 fw-bold">LiftWise</h3></a>
+            <button class="navbar-toggler" type="button" aria-controls="navbarResponsive" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link fw-bold" href="/profile">
+                            <i class="bi bi-person-circle"></i> Profile
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fw-bold active" href="/">
+                            <i class="bi bi-house-fill"></i> Home
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div id="spacer" style="margin-top: 12vh;"></div>
+    <div class="container">
+        <div class="fs-2 mx-3 mb-3">Welcome back, <strong class="text-primary">John!</strong></div>
+        <!-- Reservations -->
+        <div class="section-box p-3 mb-4" style="background-color: var(--body-bg-dark);">
+            <div class="fs-3 mb-3">Your reservations</div>
+            <div class="row row-cols-1 row-cols-md-3 g-3">
+                <!-- card 1 -->
+                <div class="col">
+                    <div class="box-card p-3 h-100">
+                        <div>
+                            <div class="fs-3 text-dark">FitUP</div>
+                            <p class="text-muted mb-2 text-light">Via I. Newton, 11, 09131 Cagliari CA</p>
+                        </div>
+                        <div class="mt-auto">
+                            <span class="badge rounded-pill bg-success mb-1">Sat 10/05, 18:00-19:00</span><br/>
+                            <span class="badge rounded-pill bg-warning">Closing soon - 22:00</span>
+                        </div>
+                        <div class="card-footer-btns mt-4">
+                            <button class="btn cancel-btn w-100 text-uppercase fw-bold">cancel</button>
+                            <button class="edit-btn"><i class="bi bi-pencil-fill"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <!-- card 2 -->
+                <div class="col">
+                    <div class="box-card p-3 h-100">
+                        <div>
+                            <div class="fs-3 text-dark">SSD Sport Area</div>
+                            <p class="text-muted mb-2 text-light">Via delle Serre, 10, 09044 Quartucciu CA</p>
+                        </div>
+                        <div class="mt-auto">
+                            <span class="badge rounded-pill bg-success mb-1">Tue 21/05, 6:00-8:00</span><br/>
+                            <span class="badge rounded-pill bg-danger">Now closed</span>
+                        </div>
+                        <div class="card-footer-btns mt-4">
+                            <button class="btn cancel-btn w-100 text-uppercase fw-bold">cancel</button>
+                            <button class="edit-btn"><i class="bi bi-pencil-fill"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Add -->
+                <a href="" style="text-decoration: none">
+                    <div class="add-box text-primary h-100">
+                        + Add
+                    </div>
+                </a>
+            </div>
+        </div>
+        <!-- Memberships -->
+        <div class="section-box p-3 mb-5">
+            <div class="fs-3 mb-3">Your memberships</div>
+            <div class="row row-cols-1 row-cols-md-3 g-3">
+                <!-- card 1 -->
+                <div class="col">
+                    <div class="box-card p-3 h-100">
+                        <div>
+                            <div class="fs-3 text-dark">FitUP</div>
+                            <p class="text-muted mb-2 text-light">Via I. Newton, 11, 09131 Cagliari CA</p>
+                            <span class="badge rounded-pill bg-success mb-1">Expires in 31/12/2025</span><br/>
+                            <span class="badge rounded-pill bg-months">12 months</span>
+                        </div>
+                            <div class="card-footer-btns mt-4">
+                            <button class="btn btn-primary fw-bold w-100 text-uppercase" style="border-radius: 10px">details</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Add -->
+                <div class="col">
+                    <a href="" style="text-decoration: none">
+                        <div class="add-box text-primary h-100">
+                            + Add
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+</body>
+</html>
