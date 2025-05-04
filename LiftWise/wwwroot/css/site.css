@@ -9,8 +9,16 @@
     --body-bg-dark: #F3D7D0;
     --primary-color: #D86249;
     --primary-color-rgb: 216, 98, 73;
+    --light: #904F40;
+    --dark: #4A1E15;
+    --success-color: #255119;
+    --success-bg: #A4C39C;
+    --warning-color: #5B3C10;
+    --warning-bg: #EEB96E;
+    --danger-color: #511A1A;
+    --danger-bg: #E07676;
     --white: #fff;
-    --black: #0000;
+    --black: #000;
 }
 
 /* BEGIN HELPERS */
@@ -19,8 +27,103 @@
     color: var(--primary-color) !important;
 }
 
+.text-light {
+    color: var(--light) !important;
+}
+
+.text-dark {
+    color: var(--dark) !important;
+}
+
 .fw-xbold {
     font-weight: 900 !important;
+}
+
+#spacer {
+    margin-top: 75px;
+}
+
+.badge {
+    font-weight: 400;
+    padding: 5px 9px;
+}
+
+    .badge.bg-danger {
+        color: var(--danger-color) !important;
+        background-color: var(--danger-bg) !important;
+    }
+
+    .badge.bg-success {
+        color: var(--success-color) !important;
+        background-color: var(--success-bg) !important;
+    }
+
+    .badge.bg-warning {
+        color: var(--warning-color) !important;
+        background-color: var(--warning-bg) !important;
+    }
+
+    .badge.bg-months {
+        color: var(--dark);
+        border: 1px solid var(--light);
+        background-color: transparent;
+    }
+
+.section-box {
+    background-color: var(--body-bg-dark);
+    border-radius: 10px;
+}
+
+.box-card {
+    background-color: var(--body-bg);
+    border-radius: 10px;
+    min-width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 0 0 1px #e0d3d3;
+}
+
+.add-box {
+    border: 2px dashed var(--primary-color) !important;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--body-bg);
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.btn-outline-primary {
+    background-color: transparent;
+    border: 2px solid var(--primary-color);
+    border-radius: 10px;
+    color: var(--primary-color);
+}
+
+    .btn-outline-primary:hover {
+        background-color: var(--primary-color);
+        color: var(--white);
+        border-color: var(--primary-color);
+    }
+
+.edit-btn {
+    background-color: var(--primary-color);
+    border: none;
+    padding: 6px 10px;
+    color: var(--white);
+    border-radius: 10px;
+    margin-left: 6px;
+}
+
+    .edit-btn:hover {
+        background-color: rgba(var(--primary-color-rgb), 0.9);
+    }
+
+.card-footer-btns {
+    display: flex;
+    align-items: center;
 }
 
 /* END HELPERS */

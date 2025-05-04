@@ -5,102 +5,95 @@
 @inject IDataSource dataSource
 @inject NavigationManager navigationManager
 
-@if (userHandler.ActiveUser != null)
-{
-	<h1>Welcome back, @userHandler.ActiveUser.firstName</h1>
-	@* <p>user logged in</p> *@
-}
+<div class="container">
+    <div id="spacer"></div>
+    @if (userHandler.ActiveUser != null)
+    {
+        <h2 class="mx-3 mb-4">Welcome back, <span class="fw-bold text-primary">@(userHandler.ActiveUser.firstName)!</span></h2>
+        @* <p>user logged in</p> *@
+    }
 
-<section id="aggiungi-palestra">
-	<div class="d-flex">
-		<div class="container">
-			<form class="row">
-				<h3>Aggiungi palestra</h3>
-				<hr>
-				<div class="col-12">
-					<input type="number" class="form-control p-2" placeholder="Inserisci codice">
-				</div>
-				<div class="col-12 mt-2">
-					<button class="btn btn-primary fc-white text-uppercase fw-bold text-white w-100 p-2">Aggiungi</button>
-				</div>
-			</form>
-		</div>
-	</div>
-</section>
-<section id="prenota">
-	<div class="container">
-		<h3>Prenota</h3>
-		<hr>
-		<div class="row g-1 justify-content-center">
-			<div class="col-lg-3 col-md-6 col-sd-12">
-				<div class="p-3 h-100">
-					<div class="card text-center h-100 d-flex flex-column">
-						<div class="card-body">
-							<h5 class="card-title mb-0 fw-bold">FitUp</h5>
-						</div>
-						<ul class="list-group list-group-flush">
-							<li class="list-group-item">Via I. Newton, 11, 09131 Cagliari CA</li>
-							<li class="list-group-item badge rounded-pill bg-success">23 posti disponibili</li>
-							<li class="list-group-item badge rounded-pill bg-success">Aperto H24</li>
-						</ul>
-						<div class="card-footer p-3">
-							<a href="" class="btn btn-primary fc-white text-uppercase fw-bold text-white w-100 p-2">Prenota</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
-<section id="abbonamenti">
-	<div class="container">
-		<h3>Abbonamenti</h3>
-		<hr>
-		<div class="row g-1 justify-content-center">
-			@if(memberships != null)
-			{
-				@foreach (ViewedMembership membership in memberships)
-				{
-					<div class="col-lg-3 col-md-6 col-12">
-						<div class="p-3 h-100">
-							<div class="card text-center h-100 d-flex flex-column">
-								<div class="card-body">
-									<h5 class="card-title mb-0 fw-bold">FitUp</h5>
-								</div>
-								<ul class="list-group list-group-flush">
-									<li class="my-2 list-group-item">@($"{membership.startDate.ToShortDateString()} - {membership.endDate.ToShortDateString()}")</li>
-									<li class="my-2 list-group-item badge rounded-pill bg-success">@($"{ Math.Round( (double)(((DateTime)membership.endDate - (DateTime)membership.startDate).Days / 30) ) } mesi")</li>
-									<li class="my-2 list-group-item badge rounded-pill bg-success">in scadenza</li>
-								</ul>
-								<div class="card-footer p-3">
-									<a href="" class="btn btn-primary fc-white text-uppercase fw-bold text-white w-100 p-2">Rinnova</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				}
-			}
+    <!-- Reservations -->
+    <div class="section-box p-3 mb-5">
+        <div class="fs-3 mb-3">Your reservations</div>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
+            <!-- card 1 -->
+            <div class="col">
+                <div class="box-card p-3 h-100">
+                    <div>
+                        <div class="fs-3 text-dark">FitUP</div>
+                        <p class="text-muted mb-2 text-light">Via I. Newton, 11, 09131 Cagliari CA</p>
+                    </div>
+                    <div class="mt-auto">
+                        <span class="badge rounded-pill bg-success mb-1">Sat 10/05, 18:00-19:00</span><br />
+                        <span class="badge rounded-pill bg-warning">Closing soon - 22:00</span>
+                    </div>
+                    <div class="card-footer-btns mt-4">
+                        <button class="btn btn-outline-primary w-100 text-uppercase fw-bold">cancel</button>
+                        <button class="edit-btn"><i class="bi bi-pencil-fill"></i></button>
+                    </div>
+                </div>
+            </div>
+            <!-- card 2 -->
+            <div class="col">
+                <div class="box-card p-3 h-100">
+                    <div>
+                        <div class="fs-3 text-dark">SSD Sport Area</div>
+                        <p class="text-muted mb-2 text-light">Via delle Serre, 10, 09044 Quartucciu CA</p>
+                    </div>
+                    <div class="mt-auto">
+                        <span class="badge rounded-pill bg-success mb-1">Tue 21/05, 6:00-8:00</span><br />
+                        <span class="badge rounded-pill bg-danger">Now closed</span>
+                    </div>
+                    <div class="card-footer-btns mt-4">
+                        <button class="btn btn-outline-primary w-100 text-uppercase fw-bold">cancel</button>
+                        <button class="edit-btn"><i class="bi bi-pencil-fill"></i></button>
+                    </div>
+                </div>
+            </div>
+            <!-- Add -->
+            <div class="col">
+                <button class="btn btn-outline-primary add-box py-3 h-100 w-100">
+                    + Add
+                </button>
+            </div>
+        </div>
+    </div>
 
-			@* <div class="col-lg-3 col-md-6 col-12">
-				<div class="p-3 h-100">
-					<div class="card text-center h-100 d-flex flex-column">
-						<div class="card-body">
-							<h5 class="card-title mb-0 fw-bold">FitUp</h5>
-						</div>
-						<ul class="list-group list-group-flush">
-							<li class="list-group-item">start date - end date</li>
-							<li class="list-group-item badge rounded-pill bg-success">totale mesi</li>
-							<li class="list-group-item badge rounded-pill bg-success">in scadenza</li>
-						</ul>
-						<div class="card-footer p-3">
-							<a href="" class="btn btn-primary fc-white text-uppercase fw-bold text-white w-100 p-2">Rinnova</a>
-						</div>
-					</div>
-				</div>
-			</div> *@
-		</div>
-	</div>
-</section>
+    <!-- Memberships -->
+    <div class="section-box p-3 mb-5">
+        <div class="fs-3 mb-3">Your memberships</div>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
+            <!-- card 1 -->
+            <div class="col">
+                <div class="box-card p-3 h-100">
+                    <div>
+                        <div class="fs-3 text-dark">FitUP</div>
+                        <p class="text-muted mb-2 text-light">Via I. Newton, 11, 09131 Cagliari CA</p>
+                        <span class="badge rounded-pill bg-success mb-1">Expires in 31/12/2025</span><br />
+                        <span class="badge rounded-pill bg-months">12 months</span>
+                    </div>
+                    <div class="card-footer-btns mt-4">
+                        <button class="btn btn-primary fw-bold w-100 text-uppercase" style="border-radius: 10px">details</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Add -->
+            @* <div class="col">
+                <a href="" style="text-decoration: none">
+                    <div class="add-box text-primary h-100">
+                        + Add
+                    </div>
+                </a>
+            </div> *@
+            <div class="col">
+                <button class="btn btn-outline-primary add-box py-3 h-100 w-100">
+                    + Add
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
 
 @code{
 	List<ViewedMembership>? memberships = null;
