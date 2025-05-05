@@ -65,19 +65,25 @@
         <div class="fs-3 mb-3">Your memberships</div>
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
             <!-- card 1 -->
-            <div class="col">
-                <div class="box-card p-3 h-100">
-                    <div>
-                        <div class="fs-3 text-dark">FitUP</div>
-                        <p class="text-muted mb-2 text-light">Via I. Newton, 11, 09131 Cagliari CA</p>
-                        <span class="badge rounded-pill bg-success mb-1">Expires in 31/12/2025</span><br />
-                        <span class="badge rounded-pill bg-months">12 months</span>
+            @if(memberships != null)
+            {
+                @foreach (ViewedMembership membership in memberships)
+                {
+                    <div class="col">
+                        <div class="box-card p-3 h-100">
+                            <div>
+                                <div class="fs-3 text-dark">@membership.gymName</div>
+                                <p class="text-muted mb-2 text-light">@membership.gymAddress</p>
+                                <span class="badge rounded-pill bg-success mb-1">Expires on @membership.endDate.ToShortDateString()</span><br />
+                                <span class="badge rounded-pill bg-months">@(Math.Round((double)((membership.endDate - membership.startDate).Days / 30))) months</span>
+                            </div>
+                            <div class="card-footer-btns mt-4">
+                                <button class="btn btn-primary fw-bold w-100 text-uppercase" style="border-radius: 10px">details</button>
+                            </div>
+                        </div>
                     </div>
-                    <div class="card-footer-btns mt-4">
-                        <button class="btn btn-primary fw-bold w-100 text-uppercase" style="border-radius: 10px">details</button>
-                    </div>
-                </div>
-            </div>
+                }
+            }
             <!-- Add -->
             @* <div class="col">
                 <a href="" style="text-decoration: none">
@@ -107,6 +113,9 @@
 
 	private void LoadData()
 	{
-		memberships = dataSource.GetMemberships(userHandler.ActiveUser.idUser);
+        if (userHandler.ActiveUser != null)
+        {
+            memberships = dataSource.GetMemberships(userHandler.ActiveUser.idUser);
+        }		
 	}
 }

@@ -26,7 +26,8 @@ namespace LiftWise.Data
                         gymId = Convert.ToInt32(dr["gymId"]),
                         startDate = Convert.ToDateTime(dr["startDate"]),
                         endDate = Convert.ToDateTime(dr["endDate"]),
-                        gymName = dr["name"].ToString()
+                        gymName = dr["name"].ToString(),
+                        gymAddress = dr["address"].ToString()
                     });
                 }
                 conn.Close();
