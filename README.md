@@ -112,7 +112,7 @@ we use GitHub as the main repository for code, facilitating system cooperation a
       - `gymId` INT FK → `tblGyms.idGym`
       - `startDate` DATE
       - `endDate` DATE
-  - [ ] **Membership Logic**
+  - [ ] **Membership Logic** (version 0.2)
     - Manage subscription membership: check that for the same `idUser` there are no active `Membership` with overlapping periods
     - Manage membership status.
   - [x] **Define `Reservation` scheme**.
@@ -123,11 +123,13 @@ we use GitHub as the main repository for code, facilitating system cooperation a
       - `reservationDate` DATE
       - `startTime` TIME
       - `endTime` TIME
-  - [ ] **Reservation Logic**
+  - [ ] **Reservation Logic** (version 0.2)
     - Manage reservations:
       - Check that the same `idUser` does not already have a `Reservation` in the same `startTime` for the same `idGym`
       - Check that the number of active reservations in that period does not exceed `tblGyms.maxCapacity`
     - Manage CRUD
+  - [ ] **Testing**
+      - Testing about responsivity and logic 
   - [x] **Documentation**
     - Update README file
 </details>
