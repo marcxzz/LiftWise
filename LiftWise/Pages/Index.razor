@@ -74,8 +74,8 @@
                             <div>
                                 <div class="fs-3 text-dark">@membership.gymName</div>
                                 <p class="text-muted mb-2 text-light">@membership.gymAddress</p>
-                                <span class="badge rounded-pill bg-@((membership.endDate - DateTime.Now).Days < 7 ? "danger" : (membership.endDate - DateTime.Now).Days < 14 ? "warning" : "success") mb-1">@((membership.endDate - DateTime.Now).Days < 1 ? "Expired" : $"Expires on {membership.endDate.ToShortDateString()}, {(membership.endDate - DateTime.Now).Days} days remaining")</span><br />
-                                <span class="badge rounded-pill bg-months">@(Math.Round((double)((membership.endDate - membership.startDate).Days / 30))) months</span>
+                                <span class="badge rounded-pill bg-@((membership.endDate - DateTime.Now).Days < 7 ? "danger" : (membership.endDate - DateTime.Now).Days < 14 ? "warning" : "success") mb-1">@((membership.endDate - DateTime.Now).Days < 1 ? "Expired" : (membership.endDate - DateTime.Now).Days < 7 ? $"{(membership.endDate - DateTime.Now).Days} days remaining" : $"Expires on {membership.endDate.ToShortDateString()}")</span><br />
+                                <span class="badge rounded-pill bg-months">@(((membership.endDate - membership.startDate).Days / 30)) @((membership.endDate - membership.startDate).Days / 30 > 1 ? "months" : "month")</span>
                             </div>
                             <div class="card-footer-btns mt-4">
                                 <button class="btn btn-primary fw-bold w-100 text-uppercase" style="border-radius: 10px">details</button>
