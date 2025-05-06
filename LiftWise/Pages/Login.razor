@@ -14,15 +14,15 @@
 			</div>
 		}
 		<div class="col-12">
-			<label for="validationCustomEmail" class="form-label">Email</label>
-			<input type="email" class="form-control" id="validationCustomEmail" @bind="email" required>
+			<label for="emailInput" class="form-label">Email</label>
+			<input type="email" class="form-control" id="emailInput" @bind="email" required maxlength="320">
 			<div class="invalid-feedback">
 				Please type an email.
 			</div>
 		</div>
 		<div class="col-12">
-			<label for="validationCustomPassword" class="form-label">Password</label>
-			<input type="password" class="form-control" id="validationCustomPassword" @bind="password" required>
+			<label for="passwordInput" class="form-label">Password</label>
+			<input type="password" class="form-control" id="passwordInput" @bind="password" required>
 			<div class="invalid-feedback">
 				Please type a password.
 			</div>

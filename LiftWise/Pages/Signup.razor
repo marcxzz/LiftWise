@@ -14,44 +14,44 @@
 			</div>
 		}
 		<div class="col-12">
-			<label for="validationCustom01" class="form-label">First name</label>
-			<input type="text" class="form-control" id="validationCustom01" @bind="firstname" required maxlength="50">
+			<label for="firstNameInput" class="form-label">First name</label>
+			<input type="text" class="form-control" id="firstNameInput" @bind="firstname" required minlength="2" maxlength="30">
 			<div class="invalid-feedback">
 				Please type your first name.
 			</div>
 		</div>
 		<div class="col-12">
-			<label for="validationCustom02" class="form-label">Last name</label>
-			<input type="text" class="form-control" id="validationCustom02" @bind="lastname" required maxlength="50">
+			<label for="lastNameInput" class="form-label">Last name</label>
+			<input type="text" class="form-control" id="lastNameInput" @bind="lastname" required minlength="2" maxlength="30">
 			<div class="invalid-feedback">
 				Please type your last name.
 			</div>
 		</div>
 		<div class="col-12">
-			<label for="validationCustom03" class="form-label">Tax code</label>
-			<input type="text" class="form-control" id="validationCustom03" @bind="taxcode" required maxlength="16">
+			<label for="taxCodeInput" class="form-label">Tax code</label>
+			<input type="text" class="form-control" id="taxCodeInput" @bind="taxcode" required minlength="16" maxlength="16">
 			<div class="invalid-feedback">
 				Please type your tax code.
 			</div>
 		</div>
 		<div class="col-12">
-			<label for="validationCustomEmail" class="form-label">Email</label>
-			<input type="email" class="form-control" id="validationCustomEmail" @bind="email" required maxlength="320">
+			<label for="emailInput" class="form-label">Email</label>
+			<input type="email" class="form-control" id="emailInput" @bind="email" required maxlength="320">
 			<div class="invalid-feedback">
 				Please type an email.
 			</div>
 		</div>
 		<div class="col-12">
-			<label for="validationCustomPassword" class="form-label">Password</label>
-			<input type="password" class="form-control" id="validationCustomPassword" @bind="password" required minlength="8">
+			<label for="passwordInput" class="form-label">Password</label>
+			<input type="password" class="form-control" id="passwordInput" @bind="password" required minlength="8" maxlength="32">
 			<div class="invalid-feedback">
 				Please type a password.
 			</div>
 		</div>
 		<div class="col-12">
 			<div class="form-check">
-				<input class="form-check-input" type="checkbox" value="" id="invalidCheck" @bind="termsAccepted" required>
-				<label class="form-check-label" for="invalidCheck">
+				<input class="form-check-input" type="checkbox" value="" id="consentCheckbox" @bind="termsAccepted" required>
+				<label class="form-check-label" for="consentCheckbox">
 					Agree to terms and conditions.
 				</label>
 				<div class="invalid-feedback">
@@ -65,7 +65,8 @@
 		<p class="text-center">Already have an account? <a href="/login">Log in</a></p>
 	</form>
 </div>
-<script>
+
+<script> @* bootstrap form validation *@
 	// Example starter JavaScript for disabling form submissions if there are invalid fields
 	(function () {
 		'use strict'
@@ -87,6 +88,7 @@
 		})
 	})()
 </script>
+
 
 @code {
 	string firstname, lastname, taxcode, email, password, error = "";
@@ -110,16 +112,20 @@
 					break;
 				case 0:
 					Console.WriteLine($"A user with email \"{email}\" is already registered");
-					error = $"A user with email \"{email}\" is already registered";
+					error = $"A user with email \"{email}\" is already registered.";
 					break;
 				case -1:
 					Console.WriteLine("An error has occured during user creation");
-					error = "An error has occured during user creation";
+					error = "An error has occured during user creation.";
 					break;
 				default:
 					break;
 			}
 		}
-		else Console.WriteLine("Cannot register user: there are empty fields");
+		else
+		{
+			error = "Cannot register user: there are empty fields.";
+			Console.WriteLine("Cannot register user: there are empty fields");
+		}
 	}
 }
