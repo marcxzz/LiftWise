@@ -69,6 +69,16 @@
         background-color: transparent;
     }
 
+a:not(.navbar a) {
+    color: var(--primary-color);
+}
+
+    a:not(.navbar a):hover {
+        color: rgba(var(--primary-color-rgb), .8);
+    }
+
+/* END HELPERS */
+
 .section-box {
     background-color: var(--body-bg-dark);
     border-radius: 10px;
@@ -125,8 +135,6 @@
     display: flex;
     align-items: center;
 }
-
-/* END HELPERS */
 
 input, .input-group-text {
     background-color: var(--body-bg-dark) !important;

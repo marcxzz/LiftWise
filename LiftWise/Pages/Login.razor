@@ -4,7 +4,7 @@
 @inject NavigationManager navigationManager
 
 <div class="d-flex justify-content-center align-items-center w-100 vh-100">
-	<form class="row g-3 needs-validation w-25" @onsubmit="RegisterUser_Click" id="signupForm" novalidate>
+	<form class="row g-3 needs-validation w-25" @onsubmit="UserLogin_Click" id="signupForm" novalidate>
 		<h1 class="text-center fw-xbold text-primary">LiftWise</h1>
 		<h3 class="text-center">Log in</h3>
 		@if (error != "")
@@ -28,9 +28,9 @@
 			</div>
 		</div>
 		<div class="col-12 d-flex justify-content-center">
-			<button class="btn btn-primary" type="submit">Log in</button>
+			<button class="btn btn-primary" type="submit">LOG IN</button>
 		</div>
-		<p class="text-center">Don't have an account? <a href="/signup">Sign up</a></p>
+		<p class="text-center mt-5">Don't have an account? <a href="/signup">Sign up</a></p>
 	</form>
 </div>
 <script>
@@ -59,7 +59,7 @@
 @code {
 	string email, password, error = "";
 
-	private void RegisterUser_Click()
+	private void UserLogin_Click()
 	{
 		if (!string.IsNullOrEmpty(email) &&
 			!string.IsNullOrEmpty(password))
